@@ -1,0 +1,61 @@
+<?php
+class Post {
+    private $idpost;
+    private $title;
+    private $description;
+    private $fecha;
+    private $user_id;
+
+    public function __construct($title, $description, $user_id) {
+        $this->title = $title;
+        $this->description = $description;
+        $this->user_id = $user_id;
+        $this->fecha = date('Y-m-d H:i:s'); // Set the current timestamp
+    }
+
+    public function getId() {
+        return $this->idpost;
+    }
+
+    public function getTitle() {
+        return $this->title;
+    }
+
+    public function getDescription() {
+        return $this->description;
+    }
+
+    public function getFecha() {
+        return $this->fecha;
+    }
+
+    public function getUserId() {
+        return $this->user_id;
+    }
+
+    public function setId($idpost) {
+        $this->idpost = $idpost;
+    }
+
+    public function save($conexion) {
+        $query = "INSERT INTO posts (title, description, user_id) VALUES (?, ?, ?)";
+        $stmt = $conexion->prepare($query);
+        $stmt->bind_param("ssi", $this->title, $this->description, $this->user_id);
+        return $stmt->execute();
+    }
+
+    public static function findAll($conexion) {
+        $query = "SELECT * FROM posts ORDER BY fecha DESC";
+        $result = $conexion->query($query);
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public static function findById($conexion, $idpost) {
+        $query = "SELECT * FROM posts WHERE idpost = ?";
+        $stmt = $conexion->prepare($query);
+        $stmt->bind_param("i", $idpost);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_assoc();
+    }
+}
+?>

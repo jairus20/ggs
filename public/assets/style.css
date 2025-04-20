@@ -1,0 +1,92 @@
+/* Estilos generales */
+body {
+    margin: 0;
+    font-family: 'Roboto', Arial, sans-serif;
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Tema claro */
+:root {
+    --background-color: #f9f9f9;
+    --text-color: #333333;
+    --card-background: #ffffff;
+    --button-background: #007bff;
+    --button-text-color: #ffffff;
+    --table-header-background: #007bff;
+    --table-header-text-color: #ffffff;
+}
+
+/* Tema oscuro */
+[data-theme="dark"] {
+    --background-color: #121212;
+    --text-color: #e0e0e0;
+    --card-background: #1e1e1e;
+    --button-background: #bb86fc;
+    --button-text-color: #000000;
+    --table-header-background: #333333;
+    --table-header-text-color: #ffffff;
+}
+
+/* Aplicar variables */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+.table thead th {
+    background-color: var(--table-header-background);
+    color: var(--table-header-text-color);
+    text-align: center;
+    font-size: 1rem; /* Aumentar el tamaño de fuente */
+    padding: 0.75rem; /* Agregar más espacio interno */
+}
+
+.table tbody td {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1rem; /* Aumentar el tamaño de fuente */
+    padding: 0.75rem; /* Agregar más espacio interno */
+    color: var(--text-color); /* Asegurar que el texto sea visible */
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.05); /* Alternar colores de filas para mejor visibilidad */
+}
+
+.table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Resaltar fila al pasar el cursor */
+}
+
+.card {
+    background-color: var(--card-background);
+    border: 1px solid var(--text-color);
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+/* Botones dentro de la tabla */
+button, .btn {
+    background-color: var(--button-background);
+    color: var(--button-text-color);
+    border: none;
+    padding: 0.4rem 0.8rem; /* Reducir el tamaño de los botones */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 0.9rem; /* Ajustar el tamaño del texto en los botones */
+}
+
+button:hover, .btn:hover {
+    opacity: 0.9;
+}
+
+a.btn-secondary {
+    margin-top: 1rem;
+}

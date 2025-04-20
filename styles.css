@@ -1,0 +1,51 @@
+/* Estilos generales */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Tema claro */
+:root {
+    --background-color: #ffffff;
+    --text-color: #000000;
+    --card-background: #f8f9fa;
+    --button-background: #007bff;
+    --button-text-color: #ffffff;
+}
+
+/* Tema oscuro */
+[data-theme="dark"] {
+    --background-color: #121212;
+    --text-color: #ffffff;
+    --card-background: #1e1e1e;
+    --button-background: #bb86fc;
+    --button-text-color: #000000;
+}
+
+/* Aplicar variables */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.card {
+    background-color: var(--card-background);
+    border: 1px solid var(--text-color);
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+button, .btn {
+    background-color: var(--button-background);
+    color: var(--button-text-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover, .btn:hover {
+    opacity: 0.9;
+}
