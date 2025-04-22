@@ -6,6 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $title = isset($_POST['title']) ? $_POST['title'] : '';
     $description = isset($_POST['description']) ? $_POST['description'] : '';
     $usuario_id = isset($_SESSION['usuario']['idusuario']) ? intval($_SESSION['usuario']['idusuario']) : 0;
+    $archivoRuta = null;
 
     // Verificar que el usuario esté logueado
     if ($usuario_id <= 0) {
@@ -13,14 +14,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     }
 
+    // Manejar la subida del archivo
+    if (isset($_FILES['archivo']) && $_FILES['archivo']['error'] === UPLOAD_ERR_OK) {
+        $archivo = $_FILES['archivo'];
+        $nombreOriginal = basename($archivo['name']);
+        $nombreGuardado = uniqid() . '_' . $nombreOriginal;
+        $rutaDestino = '../uploads/' . $nombreGuardado;
+
+        if (move_uploaded_file($archivo['tmp_name'], $rutaDestino)) {
+            $archivoRuta = 'uploads/' . $nombreGuardado;
+        } else {
+            $archivoRuta = null; // Si falla, no se guarda la ruta
+        }
+    }
+
     if (!empty($title) && !empty($description)) {
         $db = new Conexion();
         
         $title = mysqli_real_escape_string($db->getConnection(), $title);
         $description = mysqli_real_escape_string($db->getConnection(), $description);
+        $archivoRuta = $archivoRuta ? mysqli_real_escape_string($db->getConnection(), $archivoRuta) : null;
         
-        $query = "INSERT INTO posts (title, description, usuario_id) 
-                  VALUES ('$title', '$description', $usuario_id)";
+        $query = "INSERT INTO posts (title, description, archivo, usuario_id) 
+                  VALUES ('$title', '$description', '$archivoRuta', $usuario_id)";
         $result = $db->ejecutarQuery($query);
         
         if ($result) {

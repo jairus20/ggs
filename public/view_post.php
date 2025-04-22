@@ -51,6 +51,14 @@ $isAdmin = $usuarioLogueado && $usuarioLogueado['name'] === 'holi';
                 <div class="card-text mt-4">
                     <?php echo nl2br(htmlspecialchars($post['description'])); ?>
                 </div>
+
+                <?php if (!empty($post['archivo'])): ?>
+                    <div class="mt-3">
+                        <a href="../<?php echo htmlspecialchars($post['archivo']); ?>" class="btn btn-outline-primary" download>
+                            Descargar archivo adjunto
+                        </a>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
         

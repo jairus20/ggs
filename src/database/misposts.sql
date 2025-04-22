@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2025 at 06:29 PM
+-- Generation Time: Apr 22, 2025 at 05:31 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,21 @@ SET time_zone = "+00:00";
 --
 -- Database: `misposts`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `archivos`
+--
+
+CREATE TABLE `archivos` (
+  `idarchivo` int(11) NOT NULL,
+  `nombre_original` varchar(255) NOT NULL,
+  `nombre_guardado` varchar(255) NOT NULL,
+  `ruta` varchar(255) NOT NULL,
+  `fecha_subida` datetime NOT NULL DEFAULT current_timestamp(),
+  `usuario_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -94,6 +109,13 @@ INSERT INTO `usuario` (`idusuario`, `email`, `name`, `habilitado`, `password`) V
 --
 
 --
+-- Indexes for table `archivos`
+--
+ALTER TABLE `archivos`
+  ADD PRIMARY KEY (`idarchivo`),
+  ADD KEY `usuario_id` (`usuario_id`);
+
+--
 -- Indexes for table `comments`
 --
 ALTER TABLE `comments`
@@ -119,16 +141,10 @@ ALTER TABLE `usuario`
 --
 
 --
--- AUTO_INCREMENT for table `comments`
+-- AUTO_INCREMENT for table `archivos`
 --
-ALTER TABLE `comments`
-  MODIFY `idcomment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `posts`
---
-ALTER TABLE `posts`
-  MODIFY `idpost` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+ALTER TABLE `archivos`
+  MODIFY `idarchivo` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `usuario`
@@ -141,17 +157,10 @@ ALTER TABLE `usuario`
 --
 
 --
--- Constraints for table `comments`
+-- Constraints for table `archivos`
 --
-ALTER TABLE `comments`
-  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`idpost`) REFERENCES `posts` (`idpost`),
-  ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`idusuario`);
-
---
--- Constraints for table `posts`
---
-ALTER TABLE `posts`
-  ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`idusuario`);
+ALTER TABLE `archivos`
+  ADD CONSTRAINT `archivos_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`idusuario`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

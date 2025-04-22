@@ -64,7 +64,7 @@ $isAdmin = $usuarioLogueado && $usuarioLogueado['name'] === 'holi';
                     <div class="card mb-4">
                         <div class="card-body">
                             <h5 class="card-title">Crear un nuevo post</h5>
-                            <form action="./public/add_post.php" method="post">
+                            <form action="./public/add_post.php" method="post" enctype="multipart/form-data">
                                 <div class="mb-3">
                                     <label for="title" class="form-label">Título</label>
                                     <input type="text" name="title" id="title" class="form-control" required>
@@ -72,6 +72,10 @@ $isAdmin = $usuarioLogueado && $usuarioLogueado['name'] === 'holi';
                                 <div class="mb-3">
                                     <label for="description" class="form-label">Descripción</label>
                                     <textarea name="description" id="description" class="form-control" rows="3" required></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="archivo" class="form-label">Adjuntar archivo (opcional)</label>
+                                    <input type="file" name="archivo" id="archivo" class="form-control">
                                 </div>
                                 <button type="submit" class="btn btn-primary w-100">Publicar</button>
                             </form>
