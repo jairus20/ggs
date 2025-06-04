@@ -1,12 +1,12 @@
 <?php
 
 class Conexion {
-    private $host = 'localhost';
+    private $host = 'db';  // Nombre del contenedor MySQL
     private $user = 'root';
-    private $password = '';
+    private $password = 'rootpassword';  // Contraseña configurada en docker-compose
     private $database = 'misposts';
     private $connection;
-
+    
     public function getConnection() {
         return $this->connection;
     }
