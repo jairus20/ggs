@@ -49,6 +49,7 @@ $isAdmin = $usuarioLogueado && $usuarioLogueado['name'] === 'holi';
                 <a href="./public/logout.php" class="btn btn-danger btn-sm">Cerrar Sesión</a>
                 <?php if ($isAdmin): ?>
                     <a href="./public/manage_users.php" class="btn btn-secondary btn-sm">Administrar Usuarios</a>
+                    <a href="./public/performance_test.php" class="btn btn-info btn-sm">Pruebas de Rendimiento</a>
                 <?php endif; ?>
             <?php else: ?>
                 <a href="./public/login.php" class="btn btn-primary btn-sm">Iniciar Sesión</a>
